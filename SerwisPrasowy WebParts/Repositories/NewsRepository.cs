@@ -97,6 +97,20 @@ namespace SerwisPrasowy_WebParts.Repositories
             return newsStats;
         }
 
+        public string MostNewsInCat()
+        {
+            string mostPopularCatName = "Ciulala";
+            SPListItemCollection news = GetAllNews();
+
+            var result = (from n in news.Cast<SPListItem>()
+                         group n by n["Category"] into g
+                         orderby g.Count() descending
+                         select g).Take(1).First().First();
+
+            mostPopularCatName = result["Category"].ToString();
+            return mostPopularCatName;
+        }
+
         private SPListItemCollection GetAllNews()
         {
             return web.Lists["News"].Items;

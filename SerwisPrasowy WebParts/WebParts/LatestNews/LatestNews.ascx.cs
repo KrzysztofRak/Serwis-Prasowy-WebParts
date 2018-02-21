@@ -92,12 +92,12 @@ namespace SerwisPrasowy_WebParts.WebParts.OstatnieNewsy
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Presenter.LoadCategoriesList();
+           // Presenter.LoadCategoriesList();
         }
 
         protected void DropDownListCategories_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Presenter.LoadNews();
+           // Presenter.LoadNews();
         }
     }
 }

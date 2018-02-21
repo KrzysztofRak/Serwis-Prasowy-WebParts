@@ -12,7 +12,9 @@ namespace SerwisPrasowy_WebParts.Presenters
     {
         public void LoadStatistics()
         {
+        //    NewsRepository newsRepo = new NewsRepository(MyWebInstance);
 
+          //  View.NewsNumAddedToday = newsRepo.MostNewsInCat();
         }
     }
 }

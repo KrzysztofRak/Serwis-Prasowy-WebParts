@@ -17,8 +17,8 @@ namespace SerwisPrasowy_WebParts.Presenters
 
         public void LoadCategoriesList()
         {
-            CategoriesRepository categoriesRepo = new CategoriesRepository(MyWebInstance);
-            View.CategoriesListSource = categoriesRepo.GetCategoriesList();
+         //   CategoriesRepository categoriesRepo = new CategoriesRepository(MyWebInstance);
+    //        View.CategoriesListSource = categoriesRepo.GetCategoriesList();
         }
 
         public void LoadNews()
