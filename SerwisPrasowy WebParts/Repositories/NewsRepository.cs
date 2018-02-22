@@ -8,6 +8,12 @@ using System.Text;
 
 namespace SerwisPrasowy_WebParts.Repositories
 {
+    class NewsNumberInCategoryDTO
+    {
+        public string CategoryName { get; set; }
+        public int NumberOfNews { get; set; }
+    }
+
     class NewsRepository : INewsRepository
     {
         SPWeb web;
@@ -21,7 +27,7 @@ namespace SerwisPrasowy_WebParts.Repositories
         {
             SPList newsList = web.Lists["News"];
             SPQuery CAML = new SPQuery();
-            CAML.RowLimit = 1; 
+            CAML.RowLimit = 1;
             CAML.Query = "<OrderBy><FieldRef Name='Created' Ascending='False' /></OrderBy>";
 
             return newsList.GetItems(CAML)[0];
@@ -45,70 +51,32 @@ namespace SerwisPrasowy_WebParts.Repositories
             SPListItemCollection categories = categoriesRepo.GetCategoriesList();
             NewsStatisticsDTO newsStats = new NewsStatisticsDTO();
 
-            SPList newsSPList = web.Lists["News"];
-            SPQuery CAML = new SPQuery();
-
-            CAML.Query = "<Where><Geq><FieldRef Name='Created' /><Value Type='DateTime'><Today OffsetDays='-1' /></Value></Geq></Where><OrderBy><FieldRef Name='Created' Ascending='False' /></OrderBy>";
-            newsStats.AddedToday = newsSPList.GetItems(CAML).Count.ToString();
-
-            CAML.Query = "<Where><Geq><FieldRef Name='Created' /><Value Type='DateTime'><Today OffsetDays='-7' /></Value></Geq></Where><OrderBy><FieldRef Name='Created' Ascending='False' /></OrderBy>";
-            newsStats.AddedInLastWeek = newsSPList.GetItems(CAML).Count.ToString();
-
-            newsStats.TotalNews = newsSPList.ItemCount.ToString();
-
-            int leastInCategory = 0;
-            int mostInCategory = 0;
-            string leastInCategoryName = "";
-            string mostInCategoryName = "";
-
-            bool firstLoop = true;
-            foreach(SPListItem cat in categories)
-            {
-                CAML.Query = "<Where><Contains><FieldRef Name='Category' /><Value Type='Lookup'>" + cat.Title + "</Value></Contains></Where>";
-                if(firstLoop)
-                {
-                    firstLoop = false;
-                    leastInCategory = newsSPList.GetItems(CAML).Count;
-                    mostInCategory = leastInCategory;
-                    leastInCategoryName = cat.Title;
-                    mostInCategoryName = cat.Title;
-                }
-                else
-                {
-                    if(newsSPList.GetItems(CAML).Count < leastInCategory)
-                    {
-                        leastInCategory = newsSPList.GetItems(CAML).Count;
-                        leastInCategoryName = cat.Title;
-                    }
-                    else if(newsSPList.GetItems(CAML).Count > mostInCategory)
-                    {
-                        mostInCategory = leastInCategory;
-                        mostInCategoryName = cat.Title;
-                    }
-                }
-            }
-
-            newsStats.LeastNewsInCategory = leastInCategoryName + " (" + leastInCategory + ")";
-            newsStats.MostNewsInCategory = mostInCategoryName + " (" + mostInCategoryName + ")";
-
-            CAML.Query = "<Where><Geq><FieldRef Name='Created' /><Value Type='DateTime'><Today OffsetDays='-7' /></Value></Geq></Where><OrderBy><FieldRef Name='Created' Ascending='False' /></OrderBy>";
-            newsStats.AddedInLastWeek = newsSPList.GetItems(CAML).Count.ToString();
-
             return newsStats;
         }
 
-        public string MostNewsInCat()
+        public string GetMostPopularCategory()
         {
-            string mostPopularCatName = "Ciulala";
+            CategoriesRepository categoriesRepo = new CategoriesRepository(web);
+            SPListItemCollection categories = categoriesRepo.GetCategoriesList();
             SPListItemCollection news = GetAllNews();
 
-            var result = (from n in news.Cast<SPListItem>()
-                         group n by n["Category"] into g
-                         orderby g.Count() descending
-                         select g).Take(1).First().First();
+            List<NewsNumberInCategoryDTO> newsNumberInSpecifiedCategories = new List<NewsNumberInCategoryDTO>();
 
-            mostPopularCatName = result["Category"].ToString();
-            return mostPopularCatName;
+            foreach (SPListItem category in categories)
+            {
+                int newsNumberInCurrentCategory = news.Cast<SPListItem>()
+                                                  .Where(n => categories.Cast<SPListItem>()
+                                                  .Any(c => n["Category"].ToString()
+                                                  .Contains(category["Title"].ToString()))).Count();
+
+                newsNumberInSpecifiedCategories.Add(new NewsNumberInCategoryDTO()
+                { CategoryName = category["Title"].ToString(), NumberOfNews = newsNumberInCurrentCategory });
+            }
+
+
+            string mostPopularCategory = newsNumberInSpecifiedCategories.OrderByDescending(c => c.NumberOfNews)
+                                                                        .First().CategoryName;
+            return mostPopularCategory;
         }
 
         private SPListItemCollection GetAllNews()
