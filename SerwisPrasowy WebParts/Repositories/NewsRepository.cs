@@ -50,38 +50,61 @@ namespace SerwisPrasowy_WebParts.Repositories
             CategoriesRepository categoriesRepo = new CategoriesRepository(web);
             SPListItemCollection categories = categoriesRepo.GetCategoriesList();
             NewsStatisticsDTO newsStats = new NewsStatisticsDTO();
-
             return newsStats;
         }
 
-        public string GetMostPopularCategory()
+        private SPListItemCollection ExecuteQueryOnNewsList(string query, uint rowsLimit)
+        {
+            SPList newsSPList = web.Lists["News"];
+            SPQuery CAML = new SPQuery();
+            CAML.RowLimit = rowsLimit;
+            CAML.Query = query;
+            return newsSPList.GetItems(CAML);
+        }
+
+        public string GetNumberOfTodayAddedNews()
+        {
+            SPListItemCollection news = ExecuteQueryOnNewsList("<Query><Where><Geq><FieldRef Name='Created' /><Value Type='DateTime'><Today OffsetDays='-1' /></Value></Geq></Where></Query>", 0);
+            return news.Count.ToString();
+        }
+
+        public string GetNumberOfLastWeekAddedNews()
+        {
+            SPListItemCollection news = ExecuteQueryOnNewsList("<Query><Where><Geq><FieldRef Name='Created' /><Value Type='DateTime'><Today OffsetDays='-1' /></Value></Geq></Where></Query>", 0);
+            return news.Count.ToString();
+        }
+
+        public int GetTotalNewsNumber()
+        {
+            return web.Lists["News"].ItemCount;
+        }
+
+        public string GetDateOfFirstAddedNews()
+        {
+            SPListItemCollection news = ExecuteQueryOnNewsList("<Query><OrderBy><FieldRef Name='Created' Ascending='True' /></OrderBy></Query>", 1);
+            return news[0]["Created"].ToString();
+        }
+
+        public List<NewsNumberInCategoryDTO> GetCategoriesWithNewsNumberOrderedByDesc()
         {
             CategoriesRepository categoriesRepo = new CategoriesRepository(web);
             SPListItemCollection categories = categoriesRepo.GetCategoriesList();
-            SPListItemCollection news = GetAllNews();
+            SPListItemCollection allNews = web.Lists["News"].Items;
 
-            List<NewsNumberInCategoryDTO> newsNumberInSpecifiedCategories = new List<NewsNumberInCategoryDTO>();
+            List<NewsNumberInCategoryDTO> categoriesWithNewsNumber = new List<NewsNumberInCategoryDTO>();
 
             foreach (SPListItem category in categories)
             {
-                int newsNumberInCurrentCategory = news.Cast<SPListItem>()
+                int newsNumberInCurrentCategory = allNews.Cast<SPListItem>()
                                                   .Where(n => categories.Cast<SPListItem>()
                                                   .Any(c => n["Category"].ToString()
                                                   .Contains(category["Title"].ToString()))).Count();
 
-                newsNumberInSpecifiedCategories.Add(new NewsNumberInCategoryDTO()
+                categoriesWithNewsNumber.Add(new NewsNumberInCategoryDTO()
                 { CategoryName = category["Title"].ToString(), NumberOfNews = newsNumberInCurrentCategory });
             }
 
-
-            string mostPopularCategory = newsNumberInSpecifiedCategories.OrderByDescending(c => c.NumberOfNews)
-                                                                        .First().CategoryName;
-            return mostPopularCategory;
-        }
-
-        private SPListItemCollection GetAllNews()
-        {
-            return web.Lists["News"].Items;
+            return categoriesWithNewsNumber.OrderByDescending(c => c.NumberOfNews).ToList();
         }
     }
 }

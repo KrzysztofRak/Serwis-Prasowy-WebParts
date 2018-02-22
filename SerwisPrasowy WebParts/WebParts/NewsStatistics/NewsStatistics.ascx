@@ -36,7 +36,7 @@
     </tr>
     <tr>
         <td class="auto-style5">
-            <asp:Label ID="LabelAddedTodayNum" runat="server" Text="Dodanych dzisiaj: "></asp:Label>
+            <asp:Label ID="LabelAddedTodayNum" runat="server" Text="Dodanych dzisiaj: " ForeColor="Black"></asp:Label>
             <asp:Label ID="LabelAddedTodayNumVal" runat="server" Text="Num"></asp:Label>
         </td>
         <td class="auto-style4">&nbsp;</td>
@@ -46,31 +46,31 @@
     </tr>
     <tr>
         <td class="auto-style5">
-            <asp:Label ID="LabelAveragePerDayNum" runat="server" Text="Średnia ilość newsów na dzień: "></asp:Label>
+            <asp:Label ID="LabelAveragePerDayNum" runat="server" Text="Średnia ilość newsów na dzień: " ForeColor="Black"></asp:Label>
             <asp:Label ID="LabelAveragePerDayNumVal" runat="server" Text="Num"></asp:Label>
         </td>
         <td class="auto-style1" colspan="4">
-            <asp:Label ID="LabelLeastNewsInCat" runat="server" Text="Najmniej newsów w kategorii: "></asp:Label>
+            <asp:Label ID="LabelLeastNewsInCat" runat="server" Text="Najmniej newsów w kategorii: " ForeColor="Black"></asp:Label>
             <asp:Label ID="LabelLeastNewsInCatVal" runat="server" Text="Num"></asp:Label>
         </td>
     </tr>
     <tr>
         <td class="auto-style5">
-            <asp:Label ID="LabelNumInLastWeek" runat="server" Text="Dodanych w ciągu ostatniego tygodnia: "></asp:Label>
+            <asp:Label ID="LabelNumInLastWeek" runat="server" Text="Dodanych w ciągu ostatniego tygodnia: " ForeColor="Black"></asp:Label>
             <asp:Label ID="LabelNumInLastWeekVal" runat="server" Text="Num"></asp:Label>
         </td>
         <td class="auto-style1" colspan="4">
-            <asp:Label ID="LabelMostNewsInCat" runat="server" Text="Najwięcej newsów w kategorii: "></asp:Label>
+            <asp:Label ID="LabelMostNewsInCat" runat="server" Text="Najwięcej newsów w kategorii: " ForeColor="Black"></asp:Label>
             <asp:Label ID="LabelMostNewsInCatVal" runat="server" Text="Num"></asp:Label>
         </td>
     </tr>
     <tr>
         <td class="auto-style3">
-            <asp:Label ID="LabelTotalNum" runat="server" Text="Ilość wszystkich newsów: "></asp:Label>
+            <asp:Label ID="LabelTotalNum" runat="server" Text="Ilość wszystkich newsów: " ForeColor="Black"></asp:Label>
             <asp:Label ID="LabelTotalNumVal" runat="server" Text="Num"></asp:Label>
         </td>
         <td colspan="4">
-            <asp:Label ID="LabelMostPopularNews" runat="server" Text="Najpopularniejszy news: "></asp:Label>
+            <asp:Label ID="LabelMostPopularNews" runat="server" Text="Najpopularniejszy news: " ForeColor="Black"></asp:Label>
             <asp:HyperLink ID="HyperLinkMostPopularNewsVal" runat="server">NewsTitle</asp:HyperLink>
         </td>
     </tr>

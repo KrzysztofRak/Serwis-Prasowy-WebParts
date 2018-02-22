@@ -13,8 +13,17 @@ namespace SerwisPrasowy_WebParts.Presenters
         public void LoadStatistics()
         {
             NewsRepository newsRepo = new NewsRepository(MyWebInstance);
+            List<NewsNumberInCategoryDTO> categoriesWithNewsNum = newsRepo.GetCategoriesWithNewsNumberOrderedByDesc();
+            NewsNumberInCategoryDTO minNews = categoriesWithNewsNum.First();
+            NewsNumberInCategoryDTO maxNews = categoriesWithNewsNum.Last();
 
-            View.NewsNumAddedToday = newsRepo.GetMostPopularCategory();
+            View.CategoryWithLeastNews = minNews.CategoryName + " (" + minNews.NumberOfNews + ")";
+            View.CategoryWithMostNews = maxNews.CategoryName + " (" + maxNews.NumberOfNews + ")";
+
+            View.NewsNumAddedToday = newsRepo.GetNumberOfTodayAddedNews();
+            View.NewsNumAddedInLastWeek = newsRepo.GetNumberOfLastWeekAddedNews();
+            View.TotalNewsNum = newsRepo.GetTotalNewsNumber().ToString();
+         //   View.TotalNewsNum = newsRepo.GetDateOfFirstAddedNews();
         }
     }
 }
