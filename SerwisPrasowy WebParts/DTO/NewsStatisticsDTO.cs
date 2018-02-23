@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DataTransferObject.DTO
+namespace SerwisPrasowy_WebParts.DTO
 {
     public class NewsStatisticsDTO
     {

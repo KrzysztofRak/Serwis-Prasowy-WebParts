@@ -1,6 +1,6 @@
-﻿using DataTransferObject.DTO;
-using Microsoft.SharePoint;
+﻿using Microsoft.SharePoint;
 using SerwisPrasowy_WebParts.Base;
+using SerwisPrasowy_WebParts.DTO;
 using SerwisPrasowy_WebParts.IViews;
 using SerwisPrasowy_WebParts.Presenters;
 using System;
@@ -22,46 +22,15 @@ namespace SerwisPrasowy_WebParts.WebParts.StatystykiNewsow
         {
         }
 
-        public string NewsNumAddedToday
+        public List<NewsStatisticsDTO> NewsStatisticsSource
         {
-            set { LabelAddedTodayNumVal.Text = value; }
+            set
+            {
+                FormViewNewsStatistics.DataSource = value;
+                FormViewNewsStatistics.DataBind();
+            }
         }
-
-        public string AveragePerDay
-        {
-            set { LabelAveragePerDayNumVal.Text = value; }
-        }
-
-        public string NewsNumAddedInLastWeek
-        {
-            set { LabelNumInLastWeekVal.Text = value; }
-        }
-
-        public string TotalNewsNum
-        {
-            set { LabelAddedTodayNumVal.Text = value; }
-        }
-
-        public string CategoryWithLeastNews
-        {
-            set { LabelLeastNewsInCatVal.Text = value; }
-        }
-
-        public string CategoryWithMostNews
-        {
-            set { LabelMostNewsInCatVal.Text = value; }
-        }
-
-        public string MostPopularNewsTitle
-        {
-            set { HyperLinkMostPopularNewsVal.Text = value; }
-        }
-
-        public string MostPopularNewsUrl
-        {
-            set { HyperLinkMostPopularNewsVal.NavigateUrl = value; }
-        }
-
+            
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);

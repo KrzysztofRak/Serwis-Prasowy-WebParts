@@ -1,4 +1,5 @@
 ﻿using Microsoft.SharePoint;
+using SerwisPrasowy_WebParts.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,15 +11,6 @@ namespace SerwisPrasowy_WebParts.IViews
     public interface ILatestNewsView : IBaseView
     {
         SPListItemCollection CategoriesListSource { set; }
-        string SelectedCategoryId { get; }
-
-        string NewsTitle { set; }
-        string NewsUrl { set; }
-        string ShortDescription { set; }
-        string NewsDescription { set; }
-        string ImageUrl { set; }
-        string AuthorName { set; }
-        string Date { set; }
-        string Categories { set; }
+        List<NewsDTO> LatestNewsSource { set; }
     }
 }

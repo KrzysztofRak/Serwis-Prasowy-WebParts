@@ -4,7 +4,7 @@ using System.Data;
 
 namespace SerwisPrasowy_WebParts.Repositories
 {
-    class CategoriesRepository : ICategoriesRepository
+    public class CategoriesRepository : ICategoriesRepository
     {
         private SPWeb web;
 

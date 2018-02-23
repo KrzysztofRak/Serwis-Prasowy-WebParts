@@ -1,4 +1,4 @@
-﻿using DataTransferObject.DTO;
+﻿using SerwisPrasowy_WebParts.DTO;
 using Microsoft.SharePoint;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ namespace SerwisPrasowy_WebParts.Repositories.IRepositories
 {
     public interface INewsRepository
     {
-        //SPListItem GetLatestNews(int categoryId);
-        //NewsStatisticsDTO GetNewsStatistics();
+        NewsDTO GetLatestNewsFromCategory(string categoryName);
+        NewsStatisticsDTO GetNewsStatistics();
     }
 }

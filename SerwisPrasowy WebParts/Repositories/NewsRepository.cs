@@ -1,5 +1,5 @@
-﻿using DataTransferObject.DTO;
-using Microsoft.SharePoint;
+﻿using Microsoft.SharePoint;
+using SerwisPrasowy_WebParts.DTO;
 using SerwisPrasowy_WebParts.Repositories.IRepositories;
 using System;
 using System.Collections.Generic;
@@ -8,13 +8,7 @@ using System.Text;
 
 namespace SerwisPrasowy_WebParts.Repositories
 {
-    class NewsNumberInCategoryDTO
-    {
-        public string CategoryName { get; set; }
-        public int NumberOfNews { get; set; }
-    }
-
-    class NewsRepository : INewsRepository
+    public class NewsRepository : INewsRepository
     {
         SPWeb web;
 
@@ -23,33 +17,71 @@ namespace SerwisPrasowy_WebParts.Repositories
             this.web = web;
         }
 
-        public SPListItem GetLatestNews(int categoryId)
+        public NewsDTO GetLatestNewsFromCategory(string categoryName)
         {
-            SPList newsList = web.Lists["News"];
-            SPQuery CAML = new SPQuery();
-            CAML.RowLimit = 1;
-            CAML.Query = "<OrderBy><FieldRef Name='Created' Ascending='False' /></OrderBy>";
+            string query = "<Where><Contains><FieldRef Name='Category' /><Value Type='Lookup'>" + categoryName + "</Value></Contains></Where><OrderBy><FieldRef Name='Created' Ascending='False' /></OrderBy>";
+            SPListItem newsSPItem = ExecuteQueryOnNewsList(query, 1)[0];
 
-            return newsList.GetItems(CAML)[0];
-            //SPListItem news = newsList.GetItems(CAML)[0];
-            //NewsDTO newsDTO = new NewsDTO()
-            //{
-            //    Title = news.Title,
-            //    ShortDescription = news["Short Description"].ToString(),
-            //    Content = news["Content"].ToString(),
-            //    PictureUrl = news["Picture"].ToString(),
-            //    CreatedBy = news["CreatedBy"].ToString(),
-            //    Created = news["Created"].ToString()
-            //};
+            NewsDTO news = new NewsDTO()
+            {
+                Title = newsSPItem.Title,
+                NavigateUrl = web.Url + "/Lists/News/DispForm.aspx?ID=" + newsSPItem["ID"],
+                ShortDescription = newsSPItem["Short Description"].ToString(),
+                Content = newsSPItem["Content"].ToString(),
+                ImageUrl = newsSPItem["Picture"].ToString(),
+                CreatedBy = newsSPItem["Author"].ToString().Substring(3),
+                Created = newsSPItem["Created"].ToString(),
+                Category = newsSPItem["Category"].ToString()
+            };
 
-            //return newsDTO;
+            news.ImageUrl = news.ImageUrl.Remove(news.ImageUrl.IndexOf(','));
+            news.Category = ProcessSPCategoriesString(news.Category);
+
+            return news;
+        }
+
+        private string ProcessSPCategoriesString(string spCategories)
+        {
+            string categories = "";
+            int start = 0, end = 0;
+
+            while (true)
+            {
+                start = spCategories.IndexOf(";#", end);
+                end = spCategories.IndexOf(";#", start + 2);
+                if (end == -1)
+                {
+                    categories += spCategories.Substring(start + 2);
+                    break;
+                }
+                else
+                    categories += spCategories.Substring(start + 2, end - start -2) + ", ";
+
+                end += 2;
+            }
+
+            return categories;
         }
 
         public NewsStatisticsDTO GetNewsStatistics()
         {
-            CategoriesRepository categoriesRepo = new CategoriesRepository(web);
-            SPListItemCollection categories = categoriesRepo.GetCategoriesList();
             NewsStatisticsDTO newsStats = new NewsStatisticsDTO();
+
+            newsStats.AddedToday = GetNumberOfTodayAddedNews();
+            newsStats.AddedInLastWeek = GetNumberOfLastWeekAddedNews();
+
+            int totalNewsNum = GetTotalNewsNumber();
+            newsStats.AveragePerDay = GetAverageNewsNumPerDay(totalNewsNum);
+            newsStats.TotalNews = totalNewsNum.ToString();
+
+            List<NewsNumberInCategoryDTO> categoriesWithNewsNum = GetCategoriesWithNewsNumberOrderedByDesc();
+            newsStats.LeastNewsInCategory = categoriesWithNewsNum.Last().CategoryName + " (" + categoriesWithNewsNum.Last().NumberOfNews + ")";
+            newsStats.MostNewsInCategory = categoriesWithNewsNum.First().CategoryName + " (" + categoriesWithNewsNum.First().NumberOfNews + ")";
+
+            SPListItem latestNews = GetLatestNewsSPItem();
+            newsStats.LatestNewsTitle = latestNews["Title"].ToString();
+            newsStats.LatestNewsUrl = web.Url + "/Lists/News/DispForm.aspx?ID=" + latestNews["ID"];
+
             return newsStats;
         }
 
@@ -62,30 +94,41 @@ namespace SerwisPrasowy_WebParts.Repositories
             return newsSPList.GetItems(CAML);
         }
 
-        public string GetNumberOfTodayAddedNews()
+        private SPListItem GetLatestNewsSPItem()
         {
-            SPListItemCollection news = ExecuteQueryOnNewsList("<Query><Where><Geq><FieldRef Name='Created' /><Value Type='DateTime'><Today OffsetDays='-1' /></Value></Geq></Where></Query>", 0);
+            SPListItemCollection news = ExecuteQueryOnNewsList("<OrderBy><FieldRef Name='Created' Ascending='False' /></OrderBy>", 1);
+            return news[0];
+        }
+
+        private string GetNumberOfTodayAddedNews()
+        {
+            SPListItemCollection news = ExecuteQueryOnNewsList("<Where><Geq><FieldRef Name='Created' /><Value Type='DateTime'><Today OffsetDays='-1' /></Value></Geq></Where>", 0);
             return news.Count.ToString();
         }
 
-        public string GetNumberOfLastWeekAddedNews()
+        private string GetNumberOfLastWeekAddedNews()
         {
-            SPListItemCollection news = ExecuteQueryOnNewsList("<Query><Where><Geq><FieldRef Name='Created' /><Value Type='DateTime'><Today OffsetDays='-1' /></Value></Geq></Where></Query>", 0);
+            SPListItemCollection news = ExecuteQueryOnNewsList("<Where><Geq><FieldRef Name='Created' /><Value Type='DateTime'><Today OffsetDays='-7' /></Value></Geq></Where>", 0);
             return news.Count.ToString();
         }
 
-        public int GetTotalNewsNumber()
+        private int GetTotalNewsNumber()
         {
             return web.Lists["News"].ItemCount;
         }
 
-        public string GetDateOfFirstAddedNews()
+        private string GetAverageNewsNumPerDay(int totalNewsNum)
         {
-            SPListItemCollection news = ExecuteQueryOnNewsList("<Query><OrderBy><FieldRef Name='Created' Ascending='True' /></OrderBy></Query>", 1);
-            return news[0]["Created"].ToString();
+            return ((int)(totalNewsNum / DateTime.Now.Subtract(GetDateOfFirstAddedNews()).TotalDays)).ToString();
         }
 
-        public List<NewsNumberInCategoryDTO> GetCategoriesWithNewsNumberOrderedByDesc()
+        private DateTime GetDateOfFirstAddedNews()
+        {
+            SPListItemCollection news = ExecuteQueryOnNewsList("<OrderBy><FieldRef Name='Created' Ascending='True' /></OrderBy>", 1);
+            return DateTime.Parse(news[0]["Created"].ToString());
+        }
+
+        private List<NewsNumberInCategoryDTO> GetCategoriesWithNewsNumberOrderedByDesc()
         {
             CategoriesRepository categoriesRepo = new CategoriesRepository(web);
             SPListItemCollection categories = categoriesRepo.GetCategoriesList();

@@ -52,6 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\BaseWebPart.cs" />
+    <Compile Include="DTO\NewsDTO.cs" />
+    <Compile Include="DTO\NewsNumberInCategoryDTO.cs" />
+    <Compile Include="DTO\NewsStatisticsDTO.cs" />
     <Compile Include="IPresenters\IBasePresenter.cs" />
     <Compile Include="IPresenters\ILastNewsPresenter.cs" />
     <Compile Include="IPresenters\INewsStatisticsPresenter.cs" />
@@ -94,6 +97,7 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
+    <None Include="PowerShell Script\WebPartsDeploy.ps1" />
     <None Include="WebParts\LatestNews\LatestNews.webpart" />
     <None Include="WebParts\LatestNews\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{c84b02e4-d3e6-4fc2-b18a-70f4eb087941}</SharePointProjectItemId>
@@ -102,12 +106,6 @@
       <SharePointProjectItemId>{77277d6b-4f5e-46f6-a42b-78e1cfab8882}</SharePointProjectItemId>
     </None>
     <None Include="WebParts\NewsStatistics\NewsStatistics.webpart" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataTransferObject\DataTransferObject.csproj">
-      <Project>{f8900452-7fdd-4a25-b80d-62d8917b0e3b}</Project>
-      <Name>DataTransferObject</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Features\WebParts\WebParts.Template.xml">
@@ -124,6 +122,7 @@
       <LastGenOutput>NewsStatistics.ascx.g.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

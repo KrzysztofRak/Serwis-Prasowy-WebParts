@@ -9,94 +9,79 @@
 <style type="text/css">
 
 
-    .auto-style10 {
-        width: 341px;
-    }
-
     .auto-style3 {
         height: 23px;
-    }
-    .auto-style6 {
-        width: 341px;
-        text-align: center;
-    }
-    .auto-style7 {
         text-align: left;
     }
     .auto-style8 {
-        width: 341px;
+        width: 234px;
         height: 23px;
+    }
+    .auto-style15 {
+        width: 100%;
+    }
+    .auto-style19 {
+        width: 600px;
+    }
+    .auto-style20 {
+        width: 234px;
     }
     </style>
 
 <p>
-    <table style="width:100%;">
-        <tr>
-            <td class="auto-style10"><strong>
-                <asp:Label ID="LabelShowLastNewsFromCategory" runat="server" Font-Size="Medium" Text="Pokaż ostatniego newsa z kategorii: " ForeColor="#0066FF"></asp:Label>
-                </strong></td>
-            <td colspan="2">
-                <asp:DropDownList ID="DropDownListCategories" runat="server" Height="16px" OnSelectedIndexChanged="DropDownListCategories_SelectedIndexChanged" Width="189px">
-                </asp:DropDownList>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3" class="auto-style3">
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style3" colspan="3">
-                <asp:LinkButton ID="LinkBtnNewsTitle" runat="server" Font-Bold="False" Font-Size="Medium" Font-Underline="False" ForeColor="#009900">LinkBtnNewsTitle</asp:LinkButton>
-            </td>
-        </tr>
-        <tr>
-            <td class="auto-style3" colspan="2">
-                <asp:Label ID="LabelShortDescription" runat="server" Font-Italic="True" Text="LabelShortDescription" Font-Size="Small"></asp:Label>
-            </td>
-            <td class="auto-style3"></td>
-        </tr>
-        <tr>
-            <td class="auto-style6" rowspan="3">
-                <asp:Image ID="ImageNews" runat="server" />
-            </td>
-            <td class="auto-style7" rowspan="3">
-                <asp:Label ID="LabelDescription" runat="server" Text="Description"></asp:Label>
-            </td>
-            <td class="auto-style3"></td>
-        </tr>
-        <tr>
-            <td class="auto-style3">&nbsp;</td>
-        </tr>
-        <tr>
-            <td class="auto-style3"></td>
-        </tr>
-        <tr>
-            <td class="auto-style8">
-                <asp:Label ID="LabelAuthor" runat="server" Font-Italic="True" Text="Autor: "></asp:Label>
-                <asp:Label ID="LabelAuthorVal" runat="server" Font-Italic="True" Text="AutorName"></asp:Label>
-            </td>
-            <td rowspan="3"></td>
-            <td class="auto-style3"></td>
-        </tr>
-        <tr>
-            <td class="auto-style10">
-                <asp:Label ID="LabelCreated" runat="server" Font-Italic="True" Text="Utworzony: "></asp:Label>
-                <asp:Label ID="LabelCreatedVal" runat="server" Font-Italic="True" Text="Date"></asp:Label>
-            </td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td class="auto-style10">
-                <asp:Label ID="LabelCreated0" runat="server" Font-Italic="True" Text="Kategoria: "></asp:Label>
-                <asp:Label ID="LabelCategories" runat="server" Font-Italic="True" Text="Category"></asp:Label>
-            </td>
-            <td>&nbsp;</td>
-        </tr>
-    </table>
+    <strong>
+    <asp:Label ID="LabelShowLastNewsFromCategory" runat="server" Font-Size="Medium" ForeColor="#0066FF" Text="Pokaż ostatniego newsa z kategorii: "></asp:Label>
+    </strong>
+    <asp:DropDownList ID="DropDownListCategories" DataValueField="Title" DataTextField ="Title" runat="server" Height="16px" OnSelectedIndexChanged="DropDownListCategories_SelectedIndexChanged" Width="189px">
+    </asp:DropDownList>
 </p>
 
-<p>
-&nbsp;&nbsp;&nbsp;
-</p>
+<asp:FormView ID="FormViewLatestNews" runat="server">
+    <ItemTemplate>
+        <p>
+            <table class="auto-style15">
+                <tr>
+                    <td class="auto-style3" colspan="2">
+                        <asp:HyperLink ID="HyperLinkNewsTitle" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="#006600" NavigateUrl='<%#Eval("NavigateUrl") %>'><%#Eval("Title") %></asp:HyperLink>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style3" colspan="2">
+                        <asp:Label ID="LabelShortDescription" runat="server" Font-Italic="True" Font-Size="Small" Text='<%#Eval("ShortDescription") %>'></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style20">
+                        <asp:Image ID="ImageNews" runat="server" ImageUrl='<%#Eval("ImageUrl") %>'/>
+                    </td>
+                    <td class="auto-style19">
+                        <asp:Label ID="Label1" runat="server" Text=''></asp:Label>
+                        <asp:Label ID="LabelDescription" runat="server" Text='<%#Eval("Content") %>'></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style8">
+                        <asp:Label ID="LabelAuthor" runat="server" Font-Italic="True" Text="Autor: "></asp:Label>
+                        <asp:Label ID="LabelAuthorVal" runat="server" Font-Italic="True" Text='<%#Eval("CreatedBy") %>'></asp:Label>
+                    </td>
+                    <td rowspan="3" class="auto-style19"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style20">
+                        <asp:Label ID="LabelCreated0" runat="server" Font-Italic="True" Text="Kategoria: "></asp:Label>
+                        <asp:Label ID="LabelCategories" runat="server" Font-Italic="True" Text='<%#Eval("Category") %>'></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style20">
+                        <asp:Label ID="LabelCreated" runat="server" Font-Italic="True" Text="Utworzony: "></asp:Label>
+                        <asp:Label ID="LabelCreatedVal" runat="server" Font-Italic="True" Text='<%#Eval("Created") %>'></asp:Label>
+                    </td>
+                </tr>
+            </table>
+        </p>
+    </ItemTemplate>
+</asp:FormView>
+
 
 

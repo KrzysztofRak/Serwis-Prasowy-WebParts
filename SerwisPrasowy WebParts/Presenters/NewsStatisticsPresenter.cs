@@ -1,6 +1,7 @@
 ﻿using SerwisPrasowy_WebParts.IPresenters;
 using SerwisPrasowy_WebParts.IViews;
 using SerwisPrasowy_WebParts.Repositories;
+using SerwisPrasowy_WebParts.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,18 +13,7 @@ namespace SerwisPrasowy_WebParts.Presenters
     {
         public void LoadStatistics()
         {
-            NewsRepository newsRepo = new NewsRepository(MyWebInstance);
-            List<NewsNumberInCategoryDTO> categoriesWithNewsNum = newsRepo.GetCategoriesWithNewsNumberOrderedByDesc();
-            NewsNumberInCategoryDTO minNews = categoriesWithNewsNum.First();
-            NewsNumberInCategoryDTO maxNews = categoriesWithNewsNum.Last();
-
-            View.CategoryWithLeastNews = minNews.CategoryName + " (" + minNews.NumberOfNews + ")";
-            View.CategoryWithMostNews = maxNews.CategoryName + " (" + maxNews.NumberOfNews + ")";
-
-            View.NewsNumAddedToday = newsRepo.GetNumberOfTodayAddedNews();
-            View.NewsNumAddedInLastWeek = newsRepo.GetNumberOfLastWeekAddedNews();
-            View.TotalNewsNum = newsRepo.GetTotalNewsNumber().ToString();
-         //   View.TotalNewsNum = newsRepo.GetDateOfFirstAddedNews();
+            View.NewsStatisticsSource = new List<NewsStatisticsDTO> { NewsRepo.GetNewsStatistics() };
         }
     }
 }

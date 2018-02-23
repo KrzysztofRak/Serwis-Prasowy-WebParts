@@ -8,6 +8,6 @@ namespace SerwisPrasowy_WebParts.IPresenters
     public interface ILastNewsPresenter
     {
         void LoadCategoriesList();
-        void LoadNews();
+        void LoadLatestNews(string categoryName);
     }
 }

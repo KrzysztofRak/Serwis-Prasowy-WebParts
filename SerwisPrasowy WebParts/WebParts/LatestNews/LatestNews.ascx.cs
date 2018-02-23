@@ -1,4 +1,4 @@
-﻿using DataTransferObject.DTO;
+﻿using SerwisPrasowy_WebParts.DTO;
 using Microsoft.SharePoint;
 using SerwisPrasowy_WebParts.Base;
 using SerwisPrasowy_WebParts.IViews;
@@ -30,58 +30,17 @@ namespace SerwisPrasowy_WebParts.WebParts.OstatnieNewsy
             set
             {
                 DropDownListCategories.DataSource = value;
-                DropDownListCategories.DataValueField = "ID";
-                DropDownListCategories.DataTextField = "Title";
                 DropDownListCategories.DataBind();
-                ListItem allCategories = new ListItem("Wszystkie kategorie", "-1");
-                allCategories.Selected = true;
-                DropDownListCategories.Items.Add(allCategories);
             }
         }
 
-        public string SelectedCategoryId
+        public List<NewsDTO> LatestNewsSource
         {
-            get { return DropDownListCategories.SelectedValue; }
-        }
-
-        public string NewsTitle
-        {
-            set { LinkBtnNewsTitle.Text = value; }
-        }
-
-        public string NewsUrl
-        {
-            set { LinkBtnNewsTitle.PostBackUrl = value; }
-        }
-
-        public string ShortDescription
-        {
-            set { LabelShortDescription.Text = value; }
-        }
-
-        public string NewsDescription
-        {
-            set { LabelDescription.Text = value; }
-        }
-
-        public string ImageUrl
-        {
-            set { ImageNews.ImageUrl = value; }
-        }
-
-        public string AuthorName
-        {
-            set { LabelAuthor.Text = value; }
-        }
-
-        public string Date
-        {
-            set { LabelCreated.Text = value; }
-        }
-
-        public string Categories
-        {
-            set { LabelCategories.Text = value; }
+            set
+            {
+                FormViewLatestNews.DataSource = value;
+                FormViewLatestNews.DataBind();
+            }
         }
 
         protected override void OnInit(EventArgs e)
@@ -93,11 +52,12 @@ namespace SerwisPrasowy_WebParts.WebParts.OstatnieNewsy
         protected void Page_Load(object sender, EventArgs e)
         {
             Presenter.LoadCategoriesList();
+            Presenter.LoadLatestNews("");
         }
 
         protected void DropDownListCategories_SelectedIndexChanged(object sender, EventArgs e)
         {
-           // Presenter.LoadNews();
+            Presenter.LoadLatestNews(DropDownListCategories.SelectedValue);
         }
     }
 }

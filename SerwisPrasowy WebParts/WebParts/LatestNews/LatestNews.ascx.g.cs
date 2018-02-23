@@ -43,43 +43,7 @@ namespace SerwisPrasowy_WebParts.WebParts.OstatnieNewsy {
         
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
             "artCodeGenerator", "14.0.0.0")]
-        protected global::System.Web.UI.WebControls.LinkButton LinkBtnNewsTitle;
-        
-        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
-            "artCodeGenerator", "14.0.0.0")]
-        protected global::System.Web.UI.WebControls.Label LabelShortDescription;
-        
-        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
-            "artCodeGenerator", "14.0.0.0")]
-        protected global::System.Web.UI.WebControls.Image ImageNews;
-        
-        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
-            "artCodeGenerator", "14.0.0.0")]
-        protected global::System.Web.UI.WebControls.Label LabelDescription;
-        
-        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
-            "artCodeGenerator", "14.0.0.0")]
-        protected global::System.Web.UI.WebControls.Label LabelAuthor;
-        
-        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
-            "artCodeGenerator", "14.0.0.0")]
-        protected global::System.Web.UI.WebControls.Label LabelAuthorVal;
-        
-        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
-            "artCodeGenerator", "14.0.0.0")]
-        protected global::System.Web.UI.WebControls.Label LabelCreated;
-        
-        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
-            "artCodeGenerator", "14.0.0.0")]
-        protected global::System.Web.UI.WebControls.Label LabelCreatedVal;
-        
-        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
-            "artCodeGenerator", "14.0.0.0")]
-        protected global::System.Web.UI.WebControls.Label LabelCreated0;
-        
-        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
-            "artCodeGenerator", "14.0.0.0")]
-        protected global::System.Web.UI.WebControls.Label LabelCategories;
+        protected global::System.Web.UI.WebControls.FormView FormViewLatestNews;
         
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebPartCodeGenerator", "14.0.0.0")]
         public static implicit operator global::System.Web.UI.TemplateControl(OstatnieNewsy target) 
@@ -97,8 +61,8 @@ namespace SerwisPrasowy_WebParts.WebParts.OstatnieNewsy {
             @__ctrl.ApplyStyleSheetSkin(this.Page);
             @__ctrl.ID = "LabelShowLastNewsFromCategory";
             @__ctrl.Font.Size = System.Web.UI.WebControls.FontUnit.Medium;
-            @__ctrl.Text = "Pokaż ostatniego newsa z kategorii: ";
             @__ctrl.ForeColor = ((System.Drawing.Color)(System.Drawing.Color.FromArgb(0, 102, 255)));
+            @__ctrl.Text = "Pokaż ostatniego newsa z kategorii: ";
             return @__ctrl;
         }
         
@@ -111,6 +75,8 @@ namespace SerwisPrasowy_WebParts.WebParts.OstatnieNewsy {
             this.DropDownListCategories = @__ctrl;
             @__ctrl.ApplyStyleSheetSkin(this.Page);
             @__ctrl.ID = "DropDownListCategories";
+            @__ctrl.DataValueField = "Title";
+            @__ctrl.DataTextField = "Title";
             @__ctrl.Height = new System.Web.UI.WebControls.Unit(16, System.Web.UI.WebControls.UnitType.Pixel);
             @__ctrl.Width = new System.Web.UI.WebControls.Unit(189, System.Web.UI.WebControls.UnitType.Pixel);
             @__ctrl.SelectedIndexChanged -= new System.EventHandler(this.DropDownListCategories_SelectedIndexChanged);
@@ -121,68 +87,149 @@ namespace SerwisPrasowy_WebParts.WebParts.OstatnieNewsy {
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
             "artCodeGenerator", "14.0.0.0")]
-        private global::System.Web.UI.WebControls.LinkButton @__BuildControlLinkBtnNewsTitle() {
-            global::System.Web.UI.WebControls.LinkButton @__ctrl;
-            @__ctrl = new global::System.Web.UI.WebControls.LinkButton();
-            this.LinkBtnNewsTitle = @__ctrl;
-            @__ctrl.ApplyStyleSheetSkin(this.Page);
-            @__ctrl.ID = "LinkBtnNewsTitle";
-            @__ctrl.Font.Bold = false;
-            @__ctrl.Font.Size = System.Web.UI.WebControls.FontUnit.Medium;
-            @__ctrl.Font.Underline = false;
-            @__ctrl.ForeColor = ((System.Drawing.Color)(System.Drawing.Color.FromArgb(0, 153, 0)));
-            System.Web.UI.IParserAccessor @__parser = ((System.Web.UI.IParserAccessor)(@__ctrl));
-            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("LinkBtnNewsTitle"));
+        private global::System.Web.UI.DataBoundLiteralControl @__BuildControl__control4() {
+            global::System.Web.UI.DataBoundLiteralControl @__ctrl;
+            @__ctrl = new global::System.Web.UI.DataBoundLiteralControl(1, 1);
+            @__ctrl.DataBinding += new System.EventHandler(this.@__DataBind__control4);
             return @__ctrl;
         }
         
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
             "artCodeGenerator", "14.0.0.0")]
-        private global::System.Web.UI.WebControls.Label @__BuildControlLabelShortDescription() {
+        public void @__DataBind__control4(object sender, System.EventArgs e) {
+            System.Web.UI.WebControls.FormView Container;
+            System.Web.UI.DataBoundLiteralControl target;
+            target = ((System.Web.UI.DataBoundLiteralControl)(sender));
+            Container = ((System.Web.UI.WebControls.FormView)(target.BindingContainer));
+            target.SetDataBoundString(0, System.Convert.ToString(Eval("Title"), System.Globalization.CultureInfo.CurrentCulture));
+        }
+        
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
+        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
+            "artCodeGenerator", "14.0.0.0")]
+        private global::System.Web.UI.WebControls.HyperLink @__BuildControl__control3() {
+            global::System.Web.UI.WebControls.HyperLink @__ctrl;
+            @__ctrl = new global::System.Web.UI.WebControls.HyperLink();
+            @__ctrl.TemplateControl = this;
+            @__ctrl.ApplyStyleSheetSkin(this.Page);
+            @__ctrl.ID = "HyperLinkNewsTitle";
+            @__ctrl.Font.Bold = true;
+            @__ctrl.Font.Size = System.Web.UI.WebControls.FontUnit.Medium;
+            @__ctrl.ForeColor = ((System.Drawing.Color)(System.Drawing.Color.FromArgb(0, 102, 0)));
+            global::System.Web.UI.DataBoundLiteralControl @__ctrl1;
+            @__ctrl1 = this.@__BuildControl__control4();
+            System.Web.UI.IParserAccessor @__parser = ((System.Web.UI.IParserAccessor)(@__ctrl));
+            @__parser.AddParsedSubObject(@__ctrl1);
+            @__ctrl.DataBinding += new System.EventHandler(this.@__DataBinding__control3);
+            return @__ctrl;
+        }
+        
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
+        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
+            "artCodeGenerator", "14.0.0.0")]
+        public void @__DataBinding__control3(object sender, System.EventArgs e) {
+            System.Web.UI.WebControls.HyperLink dataBindingExpressionBuilderTarget;
+            System.Web.UI.WebControls.FormView Container;
+            dataBindingExpressionBuilderTarget = ((System.Web.UI.WebControls.HyperLink)(sender));
+            Container = ((System.Web.UI.WebControls.FormView)(dataBindingExpressionBuilderTarget.BindingContainer));
+            dataBindingExpressionBuilderTarget.NavigateUrl = System.Convert.ToString(Eval("NavigateUrl") , System.Globalization.CultureInfo.CurrentCulture);
+        }
+        
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
+        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
+            "artCodeGenerator", "14.0.0.0")]
+        private global::System.Web.UI.WebControls.Label @__BuildControl__control5() {
             global::System.Web.UI.WebControls.Label @__ctrl;
             @__ctrl = new global::System.Web.UI.WebControls.Label();
-            this.LabelShortDescription = @__ctrl;
+            @__ctrl.TemplateControl = this;
             @__ctrl.ApplyStyleSheetSkin(this.Page);
             @__ctrl.ID = "LabelShortDescription";
             @__ctrl.Font.Italic = true;
-            @__ctrl.Text = "LabelShortDescription";
             @__ctrl.Font.Size = System.Web.UI.WebControls.FontUnit.Small;
+            @__ctrl.DataBinding += new System.EventHandler(this.@__DataBinding__control5);
             return @__ctrl;
         }
         
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
             "artCodeGenerator", "14.0.0.0")]
-        private global::System.Web.UI.WebControls.Image @__BuildControlImageNews() {
+        public void @__DataBinding__control5(object sender, System.EventArgs e) {
+            System.Web.UI.WebControls.Label dataBindingExpressionBuilderTarget;
+            System.Web.UI.WebControls.FormView Container;
+            dataBindingExpressionBuilderTarget = ((System.Web.UI.WebControls.Label)(sender));
+            Container = ((System.Web.UI.WebControls.FormView)(dataBindingExpressionBuilderTarget.BindingContainer));
+            dataBindingExpressionBuilderTarget.Text = System.Convert.ToString(Eval("ShortDescription") , System.Globalization.CultureInfo.CurrentCulture);
+        }
+        
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
+        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
+            "artCodeGenerator", "14.0.0.0")]
+        private global::System.Web.UI.WebControls.Image @__BuildControl__control6() {
             global::System.Web.UI.WebControls.Image @__ctrl;
             @__ctrl = new global::System.Web.UI.WebControls.Image();
-            this.ImageNews = @__ctrl;
+            @__ctrl.TemplateControl = this;
             @__ctrl.ApplyStyleSheetSkin(this.Page);
             @__ctrl.ID = "ImageNews";
+            @__ctrl.DataBinding += new System.EventHandler(this.@__DataBinding__control6);
             return @__ctrl;
         }
         
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
             "artCodeGenerator", "14.0.0.0")]
-        private global::System.Web.UI.WebControls.Label @__BuildControlLabelDescription() {
+        public void @__DataBinding__control6(object sender, System.EventArgs e) {
+            System.Web.UI.WebControls.Image dataBindingExpressionBuilderTarget;
+            System.Web.UI.WebControls.FormView Container;
+            dataBindingExpressionBuilderTarget = ((System.Web.UI.WebControls.Image)(sender));
+            Container = ((System.Web.UI.WebControls.FormView)(dataBindingExpressionBuilderTarget.BindingContainer));
+            dataBindingExpressionBuilderTarget.ImageUrl = System.Convert.ToString(Eval("ImageUrl") , System.Globalization.CultureInfo.CurrentCulture);
+        }
+        
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
+        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
+            "artCodeGenerator", "14.0.0.0")]
+        private global::System.Web.UI.WebControls.Label @__BuildControl__control7() {
             global::System.Web.UI.WebControls.Label @__ctrl;
             @__ctrl = new global::System.Web.UI.WebControls.Label();
-            this.LabelDescription = @__ctrl;
+            @__ctrl.TemplateControl = this;
+            @__ctrl.ApplyStyleSheetSkin(this.Page);
+            @__ctrl.ID = "Label1";
+            @__ctrl.Text = "";
+            return @__ctrl;
+        }
+        
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
+        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
+            "artCodeGenerator", "14.0.0.0")]
+        private global::System.Web.UI.WebControls.Label @__BuildControl__control8() {
+            global::System.Web.UI.WebControls.Label @__ctrl;
+            @__ctrl = new global::System.Web.UI.WebControls.Label();
+            @__ctrl.TemplateControl = this;
             @__ctrl.ApplyStyleSheetSkin(this.Page);
             @__ctrl.ID = "LabelDescription";
-            @__ctrl.Text = "Description";
+            @__ctrl.DataBinding += new System.EventHandler(this.@__DataBinding__control8);
             return @__ctrl;
         }
         
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
             "artCodeGenerator", "14.0.0.0")]
-        private global::System.Web.UI.WebControls.Label @__BuildControlLabelAuthor() {
+        public void @__DataBinding__control8(object sender, System.EventArgs e) {
+            System.Web.UI.WebControls.Label dataBindingExpressionBuilderTarget;
+            System.Web.UI.WebControls.FormView Container;
+            dataBindingExpressionBuilderTarget = ((System.Web.UI.WebControls.Label)(sender));
+            Container = ((System.Web.UI.WebControls.FormView)(dataBindingExpressionBuilderTarget.BindingContainer));
+            dataBindingExpressionBuilderTarget.Text = System.Convert.ToString(Eval("Content") , System.Globalization.CultureInfo.CurrentCulture);
+        }
+        
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
+        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
+            "artCodeGenerator", "14.0.0.0")]
+        private global::System.Web.UI.WebControls.Label @__BuildControl__control9() {
             global::System.Web.UI.WebControls.Label @__ctrl;
             @__ctrl = new global::System.Web.UI.WebControls.Label();
-            this.LabelAuthor = @__ctrl;
+            @__ctrl.TemplateControl = this;
             @__ctrl.ApplyStyleSheetSkin(this.Page);
             @__ctrl.ID = "LabelAuthor";
             @__ctrl.Font.Italic = true;
@@ -193,52 +240,35 @@ namespace SerwisPrasowy_WebParts.WebParts.OstatnieNewsy {
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
             "artCodeGenerator", "14.0.0.0")]
-        private global::System.Web.UI.WebControls.Label @__BuildControlLabelAuthorVal() {
+        private global::System.Web.UI.WebControls.Label @__BuildControl__control10() {
             global::System.Web.UI.WebControls.Label @__ctrl;
             @__ctrl = new global::System.Web.UI.WebControls.Label();
-            this.LabelAuthorVal = @__ctrl;
+            @__ctrl.TemplateControl = this;
             @__ctrl.ApplyStyleSheetSkin(this.Page);
             @__ctrl.ID = "LabelAuthorVal";
             @__ctrl.Font.Italic = true;
-            @__ctrl.Text = "AutorName";
+            @__ctrl.DataBinding += new System.EventHandler(this.@__DataBinding__control10);
             return @__ctrl;
         }
         
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
             "artCodeGenerator", "14.0.0.0")]
-        private global::System.Web.UI.WebControls.Label @__BuildControlLabelCreated() {
-            global::System.Web.UI.WebControls.Label @__ctrl;
-            @__ctrl = new global::System.Web.UI.WebControls.Label();
-            this.LabelCreated = @__ctrl;
-            @__ctrl.ApplyStyleSheetSkin(this.Page);
-            @__ctrl.ID = "LabelCreated";
-            @__ctrl.Font.Italic = true;
-            @__ctrl.Text = "Utworzony: ";
-            return @__ctrl;
+        public void @__DataBinding__control10(object sender, System.EventArgs e) {
+            System.Web.UI.WebControls.Label dataBindingExpressionBuilderTarget;
+            System.Web.UI.WebControls.FormView Container;
+            dataBindingExpressionBuilderTarget = ((System.Web.UI.WebControls.Label)(sender));
+            Container = ((System.Web.UI.WebControls.FormView)(dataBindingExpressionBuilderTarget.BindingContainer));
+            dataBindingExpressionBuilderTarget.Text = System.Convert.ToString(Eval("CreatedBy") , System.Globalization.CultureInfo.CurrentCulture);
         }
         
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
             "artCodeGenerator", "14.0.0.0")]
-        private global::System.Web.UI.WebControls.Label @__BuildControlLabelCreatedVal() {
+        private global::System.Web.UI.WebControls.Label @__BuildControl__control11() {
             global::System.Web.UI.WebControls.Label @__ctrl;
             @__ctrl = new global::System.Web.UI.WebControls.Label();
-            this.LabelCreatedVal = @__ctrl;
-            @__ctrl.ApplyStyleSheetSkin(this.Page);
-            @__ctrl.ID = "LabelCreatedVal";
-            @__ctrl.Font.Italic = true;
-            @__ctrl.Text = "Date";
-            return @__ctrl;
-        }
-        
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
-        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
-            "artCodeGenerator", "14.0.0.0")]
-        private global::System.Web.UI.WebControls.Label @__BuildControlLabelCreated0() {
-            global::System.Web.UI.WebControls.Label @__ctrl;
-            @__ctrl = new global::System.Web.UI.WebControls.Label();
-            this.LabelCreated0 = @__ctrl;
+            @__ctrl.TemplateControl = this;
             @__ctrl.ApplyStyleSheetSkin(this.Page);
             @__ctrl.ID = "LabelCreated0";
             @__ctrl.Font.Italic = true;
@@ -249,14 +279,139 @@ namespace SerwisPrasowy_WebParts.WebParts.OstatnieNewsy {
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
             "artCodeGenerator", "14.0.0.0")]
-        private global::System.Web.UI.WebControls.Label @__BuildControlLabelCategories() {
+        private global::System.Web.UI.WebControls.Label @__BuildControl__control12() {
             global::System.Web.UI.WebControls.Label @__ctrl;
             @__ctrl = new global::System.Web.UI.WebControls.Label();
-            this.LabelCategories = @__ctrl;
+            @__ctrl.TemplateControl = this;
             @__ctrl.ApplyStyleSheetSkin(this.Page);
             @__ctrl.ID = "LabelCategories";
             @__ctrl.Font.Italic = true;
-            @__ctrl.Text = "Category";
+            @__ctrl.DataBinding += new System.EventHandler(this.@__DataBinding__control12);
+            return @__ctrl;
+        }
+        
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
+        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
+            "artCodeGenerator", "14.0.0.0")]
+        public void @__DataBinding__control12(object sender, System.EventArgs e) {
+            System.Web.UI.WebControls.Label dataBindingExpressionBuilderTarget;
+            System.Web.UI.WebControls.FormView Container;
+            dataBindingExpressionBuilderTarget = ((System.Web.UI.WebControls.Label)(sender));
+            Container = ((System.Web.UI.WebControls.FormView)(dataBindingExpressionBuilderTarget.BindingContainer));
+            dataBindingExpressionBuilderTarget.Text = System.Convert.ToString(Eval("Category") , System.Globalization.CultureInfo.CurrentCulture);
+        }
+        
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
+        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
+            "artCodeGenerator", "14.0.0.0")]
+        private global::System.Web.UI.WebControls.Label @__BuildControl__control13() {
+            global::System.Web.UI.WebControls.Label @__ctrl;
+            @__ctrl = new global::System.Web.UI.WebControls.Label();
+            @__ctrl.TemplateControl = this;
+            @__ctrl.ApplyStyleSheetSkin(this.Page);
+            @__ctrl.ID = "LabelCreated";
+            @__ctrl.Font.Italic = true;
+            @__ctrl.Text = "Utworzony: ";
+            return @__ctrl;
+        }
+        
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
+        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
+            "artCodeGenerator", "14.0.0.0")]
+        private global::System.Web.UI.WebControls.Label @__BuildControl__control14() {
+            global::System.Web.UI.WebControls.Label @__ctrl;
+            @__ctrl = new global::System.Web.UI.WebControls.Label();
+            @__ctrl.TemplateControl = this;
+            @__ctrl.ApplyStyleSheetSkin(this.Page);
+            @__ctrl.ID = "LabelCreatedVal";
+            @__ctrl.Font.Italic = true;
+            @__ctrl.DataBinding += new System.EventHandler(this.@__DataBinding__control14);
+            return @__ctrl;
+        }
+        
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
+        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
+            "artCodeGenerator", "14.0.0.0")]
+        public void @__DataBinding__control14(object sender, System.EventArgs e) {
+            System.Web.UI.WebControls.Label dataBindingExpressionBuilderTarget;
+            System.Web.UI.WebControls.FormView Container;
+            dataBindingExpressionBuilderTarget = ((System.Web.UI.WebControls.Label)(sender));
+            Container = ((System.Web.UI.WebControls.FormView)(dataBindingExpressionBuilderTarget.BindingContainer));
+            dataBindingExpressionBuilderTarget.Text = System.Convert.ToString(Eval("Created") , System.Globalization.CultureInfo.CurrentCulture);
+        }
+        
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
+        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
+            "artCodeGenerator", "14.0.0.0")]
+        private void @__BuildControl__control2(System.Web.UI.Control @__ctrl) {
+            System.Web.UI.IParserAccessor @__parser = ((System.Web.UI.IParserAccessor)(@__ctrl));
+            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n        <p>\r\n            <table class=\"auto-style15\">\r\n                <tr>\r\n  " +
+                        "                  <td class=\"auto-style3\" colspan=\"2\">\r\n                        " +
+                        ""));
+            global::System.Web.UI.WebControls.HyperLink @__ctrl1;
+            @__ctrl1 = this.@__BuildControl__control3();
+            @__parser.AddParsedSubObject(@__ctrl1);
+            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n                    </td>\r\n                </tr>\r\n                <tr>\r\n       " +
+                        "             <td class=\"auto-style3\" colspan=\"2\">\r\n                        "));
+            global::System.Web.UI.WebControls.Label @__ctrl2;
+            @__ctrl2 = this.@__BuildControl__control5();
+            @__parser.AddParsedSubObject(@__ctrl2);
+            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n                    </td>\r\n                </tr>\r\n                <tr>\r\n       " +
+                        "             <td class=\"auto-style20\">\r\n                        "));
+            global::System.Web.UI.WebControls.Image @__ctrl3;
+            @__ctrl3 = this.@__BuildControl__control6();
+            @__parser.AddParsedSubObject(@__ctrl3);
+            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n                    </td>\r\n                    <td class=\"auto-style19\">\r\n     " +
+                        "                   "));
+            global::System.Web.UI.WebControls.Label @__ctrl4;
+            @__ctrl4 = this.@__BuildControl__control7();
+            @__parser.AddParsedSubObject(@__ctrl4);
+            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n                        "));
+            global::System.Web.UI.WebControls.Label @__ctrl5;
+            @__ctrl5 = this.@__BuildControl__control8();
+            @__parser.AddParsedSubObject(@__ctrl5);
+            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n                    </td>\r\n                </tr>\r\n                <tr>\r\n       " +
+                        "             <td class=\"auto-style8\">\r\n                        "));
+            global::System.Web.UI.WebControls.Label @__ctrl6;
+            @__ctrl6 = this.@__BuildControl__control9();
+            @__parser.AddParsedSubObject(@__ctrl6);
+            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n                        "));
+            global::System.Web.UI.WebControls.Label @__ctrl7;
+            @__ctrl7 = this.@__BuildControl__control10();
+            @__parser.AddParsedSubObject(@__ctrl7);
+            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n                    </td>\r\n                    <td rowspan=\"3\" class=\"auto-styl" +
+                        "e19\"></td>\r\n                </tr>\r\n                <tr>\r\n                    <td" +
+                        " class=\"auto-style20\">\r\n                        "));
+            global::System.Web.UI.WebControls.Label @__ctrl8;
+            @__ctrl8 = this.@__BuildControl__control11();
+            @__parser.AddParsedSubObject(@__ctrl8);
+            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n                        "));
+            global::System.Web.UI.WebControls.Label @__ctrl9;
+            @__ctrl9 = this.@__BuildControl__control12();
+            @__parser.AddParsedSubObject(@__ctrl9);
+            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n                    </td>\r\n                </tr>\r\n                <tr>\r\n       " +
+                        "             <td class=\"auto-style20\">\r\n                        "));
+            global::System.Web.UI.WebControls.Label @__ctrl10;
+            @__ctrl10 = this.@__BuildControl__control13();
+            @__parser.AddParsedSubObject(@__ctrl10);
+            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n                        "));
+            global::System.Web.UI.WebControls.Label @__ctrl11;
+            @__ctrl11 = this.@__BuildControl__control14();
+            @__parser.AddParsedSubObject(@__ctrl11);
+            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n                    </td>\r\n                </tr>\r\n            </table>\r\n       " +
+                        " </p>\r\n    "));
+        }
+        
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
+        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
+            "artCodeGenerator", "14.0.0.0")]
+        private global::System.Web.UI.WebControls.FormView @__BuildControlFormViewLatestNews() {
+            global::System.Web.UI.WebControls.FormView @__ctrl;
+            @__ctrl = new global::System.Web.UI.WebControls.FormView();
+            this.FormViewLatestNews = @__ctrl;
+            @__ctrl.ApplyStyleSheetSkin(this.Page);
+            @__ctrl.ItemTemplate = new System.Web.UI.CompiledBindableTemplateBuilder(new System.Web.UI.BuildTemplateMethod(this.@__BuildControl__control2), null);
+            @__ctrl.ID = "FormViewLatestNews";
             return @__ctrl;
         }
         
@@ -269,100 +424,40 @@ namespace SerwisPrasowy_WebParts.WebParts.OstatnieNewsy {
 <style type=""text/css"">
 
 
-    .auto-style10 {
-        width: 341px;
-    }
-
     .auto-style3 {
         height: 23px;
-    }
-    .auto-style6 {
-        width: 341px;
-        text-align: center;
-    }
-    .auto-style7 {
         text-align: left;
     }
     .auto-style8 {
-        width: 341px;
+        width: 234px;
         height: 23px;
+    }
+    .auto-style15 {
+        width: 100%;
+    }
+    .auto-style19 {
+        width: 600px;
+    }
+    .auto-style20 {
+        width: 234px;
     }
     </style>
 
 <p>
-    <table style=""width:100%;"">
-        <tr>
-            <td class=""auto-style10""><strong>
-                "));
+    <strong>
+    "));
             global::System.Web.UI.WebControls.Label @__ctrl1;
             @__ctrl1 = this.@__BuildControlLabelShowLastNewsFromCategory();
             @__parser.AddParsedSubObject(@__ctrl1);
-            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n                </strong></td>\r\n            <td colspan=\"2\">\r\n                "));
+            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n    </strong>\r\n    "));
             global::System.Web.UI.WebControls.DropDownList @__ctrl2;
             @__ctrl2 = this.@__BuildControlDropDownListCategories();
             @__parser.AddParsedSubObject(@__ctrl2);
-            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n            </td>\r\n        </tr>\r\n        <tr>\r\n            <td colspan=\"3\" cla" +
-                        "ss=\"auto-style3\">\r\n            </td>\r\n        </tr>\r\n        <tr>\r\n            <" +
-                        "td class=\"auto-style3\" colspan=\"3\">\r\n                "));
-            global::System.Web.UI.WebControls.LinkButton @__ctrl3;
-            @__ctrl3 = this.@__BuildControlLinkBtnNewsTitle();
+            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n</p>\r\n\r\n"));
+            global::System.Web.UI.WebControls.FormView @__ctrl3;
+            @__ctrl3 = this.@__BuildControlFormViewLatestNews();
             @__parser.AddParsedSubObject(@__ctrl3);
-            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n            </td>\r\n        </tr>\r\n        <tr>\r\n            <td class=\"auto-sty" +
-                        "le3\" colspan=\"2\">\r\n                "));
-            global::System.Web.UI.WebControls.Label @__ctrl4;
-            @__ctrl4 = this.@__BuildControlLabelShortDescription();
-            @__parser.AddParsedSubObject(@__ctrl4);
-            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n            </td>\r\n            <td class=\"auto-style3\"></td>\r\n        </tr>\r\n  " +
-                        "      <tr>\r\n            <td class=\"auto-style6\" rowspan=\"3\">\r\n                "));
-            global::System.Web.UI.WebControls.Image @__ctrl5;
-            @__ctrl5 = this.@__BuildControlImageNews();
-            @__parser.AddParsedSubObject(@__ctrl5);
-            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n            </td>\r\n            <td class=\"auto-style7\" rowspan=\"3\">\r\n          " +
-                        "      "));
-            global::System.Web.UI.WebControls.Label @__ctrl6;
-            @__ctrl6 = this.@__BuildControlLabelDescription();
-            @__parser.AddParsedSubObject(@__ctrl6);
-            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl(@"
-            </td>
-            <td class=""auto-style3""></td>
-        </tr>
-        <tr>
-            <td class=""auto-style3"">&nbsp;</td>
-        </tr>
-        <tr>
-            <td class=""auto-style3""></td>
-        </tr>
-        <tr>
-            <td class=""auto-style8"">
-                "));
-            global::System.Web.UI.WebControls.Label @__ctrl7;
-            @__ctrl7 = this.@__BuildControlLabelAuthor();
-            @__parser.AddParsedSubObject(@__ctrl7);
-            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n                "));
-            global::System.Web.UI.WebControls.Label @__ctrl8;
-            @__ctrl8 = this.@__BuildControlLabelAuthorVal();
-            @__parser.AddParsedSubObject(@__ctrl8);
-            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n            </td>\r\n            <td rowspan=\"3\"></td>\r\n            <td class=\"au" +
-                        "to-style3\"></td>\r\n        </tr>\r\n        <tr>\r\n            <td class=\"auto-style" +
-                        "10\">\r\n                "));
-            global::System.Web.UI.WebControls.Label @__ctrl9;
-            @__ctrl9 = this.@__BuildControlLabelCreated();
-            @__parser.AddParsedSubObject(@__ctrl9);
-            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n                "));
-            global::System.Web.UI.WebControls.Label @__ctrl10;
-            @__ctrl10 = this.@__BuildControlLabelCreatedVal();
-            @__parser.AddParsedSubObject(@__ctrl10);
-            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n            </td>\r\n            <td>&nbsp;</td>\r\n        </tr>\r\n        <tr>\r\n  " +
-                        "          <td class=\"auto-style10\">\r\n                "));
-            global::System.Web.UI.WebControls.Label @__ctrl11;
-            @__ctrl11 = this.@__BuildControlLabelCreated0();
-            @__parser.AddParsedSubObject(@__ctrl11);
-            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n                "));
-            global::System.Web.UI.WebControls.Label @__ctrl12;
-            @__ctrl12 = this.@__BuildControlLabelCategories();
-            @__parser.AddParsedSubObject(@__ctrl12);
-            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n            </td>\r\n            <td>&nbsp;</td>\r\n        </tr>\r\n    </table>\r\n</" +
-                        "p>\r\n\r\n<p>\r\n&nbsp;&nbsp;&nbsp;\r\n</p>\r\n\r\n\r\n"));
+            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n\r\n\r\n\r\n"));
         }
         
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
