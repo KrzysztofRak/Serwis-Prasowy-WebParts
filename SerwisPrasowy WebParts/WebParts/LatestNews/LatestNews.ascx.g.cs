@@ -419,8 +419,24 @@ namespace SerwisPrasowy_WebParts.WebParts.OstatnieNewsy {
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
             "artCodeGenerator", "14.0.0.0")]
         private void @__BuildControlTree(global::SerwisPrasowy_WebParts.WebParts.OstatnieNewsy.OstatnieNewsy @__ctrl) {
+            global::System.Web.UI.WebControls.Label @__ctrl1;
+            @__ctrl1 = this.@__BuildControlLabelShowLastNewsFromCategory();
             System.Web.UI.IParserAccessor @__parser = ((System.Web.UI.IParserAccessor)(@__ctrl));
-            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl(@"
+            @__parser.AddParsedSubObject(@__ctrl1);
+            global::System.Web.UI.WebControls.DropDownList @__ctrl2;
+            @__ctrl2 = this.@__BuildControlDropDownListCategories();
+            @__parser.AddParsedSubObject(@__ctrl2);
+            global::System.Web.UI.WebControls.FormView @__ctrl3;
+            @__ctrl3 = this.@__BuildControlFormViewLatestNews();
+            @__parser.AddParsedSubObject(@__ctrl3);
+            @__ctrl.SetRenderMethodDelegate(new System.Web.UI.RenderMethod(this.@__Render__control1));
+        }
+        
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
+        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
+            "artCodeGenerator", "14.0.0.0")]
+        private void @__Render__control1(System.Web.UI.HtmlTextWriter @__w, System.Web.UI.Control parameterContainer) {
+            @__w.Write(@"
 <style type=""text/css"">
 
 
@@ -445,19 +461,17 @@ namespace SerwisPrasowy_WebParts.WebParts.OstatnieNewsy {
 
 <p>
     <strong>
-    "));
-            global::System.Web.UI.WebControls.Label @__ctrl1;
-            @__ctrl1 = this.@__BuildControlLabelShowLastNewsFromCategory();
-            @__parser.AddParsedSubObject(@__ctrl1);
-            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n    </strong>\r\n    "));
-            global::System.Web.UI.WebControls.DropDownList @__ctrl2;
-            @__ctrl2 = this.@__BuildControlDropDownListCategories();
-            @__parser.AddParsedSubObject(@__ctrl2);
-            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n</p>\r\n\r\n"));
-            global::System.Web.UI.WebControls.FormView @__ctrl3;
-            @__ctrl3 = this.@__BuildControlFormViewLatestNews();
-            @__parser.AddParsedSubObject(@__ctrl3);
-            @__parser.AddParsedSubObject(new System.Web.UI.LiteralControl("\r\n\r\n\r\n\r\n"));
+    ");
+            parameterContainer.Controls[0].RenderControl(@__w);
+            @__w.Write("\r\n    </strong>\r\n    ");
+            parameterContainer.Controls[1].RenderControl(@__w);
+            @__w.Write("\r\n</p>\r\n\r\n");
+            parameterContainer.Controls[2].RenderControl(@__w);
+            @__w.Write("\r\n\r\n<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" +
+                    "\"></script>\r\n\r\n<script>\r\n    $(\"#");
+@__w.Write(SPContext.Current.Web.Url);
+
+            @__w.Write("\").change(function () {\r\n        alert(\"hahahaha\");\r\n    });\r\n</script>\r\n");
         }
         
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +

@@ -17,10 +17,29 @@ namespace SerwisPrasowy_WebParts.Repositories
             this.web = web;
         }
 
+        private SPListItemCollection ExecuteQueryOnNewsList(string query, uint rowsLimit)
+        {
+            SPList newsSPList = web.Lists["News"];
+            SPQuery CAML = new SPQuery();
+            CAML.RowLimit = rowsLimit;
+            CAML.Query = query;
+            return newsSPList.GetItems(CAML);
+        }
+
         public NewsDTO GetLatestNewsFromCategory(string categoryName)
         {
-            string query = "<Where><Contains><FieldRef Name='Category' /><Value Type='Lookup'>" + categoryName + "</Value></Contains></Where><OrderBy><FieldRef Name='Created' Ascending='False' /></OrderBy>";
-            SPListItem newsSPItem = ExecuteQueryOnNewsList(query, 1)[0];
+            string query;
+
+            if (categoryName == "")
+                query = "";
+            else
+                query = "<Where><Contains><FieldRef Name='Category' /><Value Type='Lookup'>" + categoryName + "</Value></Contains></Where><OrderBy><FieldRef Name='Created' Ascending='False' /></OrderBy>";
+            SPListItemCollection newsSPItemsColl = ExecuteQueryOnNewsList(query, 1);
+
+            if (newsSPItemsColl == null)
+                return null;
+
+            SPListItem newsSPItem = newsSPItemsColl[0];
 
             NewsDTO news = new NewsDTO()
             {
@@ -85,15 +104,6 @@ namespace SerwisPrasowy_WebParts.Repositories
             return newsStats;
         }
 
-        private SPListItemCollection ExecuteQueryOnNewsList(string query, uint rowsLimit)
-        {
-            SPList newsSPList = web.Lists["News"];
-            SPQuery CAML = new SPQuery();
-            CAML.RowLimit = rowsLimit;
-            CAML.Query = query;
-            return newsSPList.GetItems(CAML);
-        }
-
         private SPListItem GetLatestNewsSPItem()
         {
             SPListItemCollection news = ExecuteQueryOnNewsList("<OrderBy><FieldRef Name='Created' Ascending='False' /></OrderBy>", 1);
@@ -141,10 +151,12 @@ namespace SerwisPrasowy_WebParts.Repositories
                 int newsNumberInCurrentCategory = allNews.Cast<SPListItem>()
                                                   .Where(n => categories.Cast<SPListItem>()
                                                   .Any(c => n["Category"].ToString()
-                                                  .Contains(category["Title"].ToString()))).Count();
+                                                  .Contains(category.Title))).Count();
 
                 categoriesWithNewsNumber.Add(new NewsNumberInCategoryDTO()
-                { CategoryName = category["Title"].ToString(), NumberOfNews = newsNumberInCurrentCategory });
+                { CategoryName = category.Title, NumberOfNews = newsNumberInCurrentCategory });
+
+                newsNumberInCurrentCategory++;
             }
 
             return categoriesWithNewsNumber.OrderByDescending(c => c.NumberOfNews).ToList();

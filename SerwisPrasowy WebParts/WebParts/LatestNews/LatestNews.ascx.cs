@@ -31,6 +31,9 @@ namespace SerwisPrasowy_WebParts.WebParts.OstatnieNewsy
             {
                 DropDownListCategories.DataSource = value;
                 DropDownListCategories.DataBind();
+                ListItem empty = new ListItem();
+                DropDownListCategories.Items.Add(empty);
+                empty.Selected = true;
             }
         }
 
@@ -51,8 +54,11 @@ namespace SerwisPrasowy_WebParts.WebParts.OstatnieNewsy
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Presenter.LoadCategoriesList();
-            Presenter.LoadLatestNews("");
+            if (!Page.IsPostBack)
+            {
+                Presenter.LoadCategoriesList();
+                Presenter.LoadLatestNews("");
+            }
         }
 
         protected void DropDownListCategories_SelectedIndexChanged(object sender, EventArgs e)

@@ -111,6 +111,7 @@
     <Content Include="Features\WebParts\WebParts.Template.xml">
       <DependentUpon>WebParts.feature</DependentUpon>
     </Content>
+    <Content Include="JavaScript\LatestNews.js" />
     <Content Include="WebParts\LatestNews\Elements.xml" />
     <Content Include="WebParts\LatestNews\LatestNews.ascx">
       <Generator>SharePointWebPartCodeGenerator</Generator>

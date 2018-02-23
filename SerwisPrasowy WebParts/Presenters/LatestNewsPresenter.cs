@@ -19,11 +19,7 @@ namespace SerwisPrasowy_WebParts.Presenters
 
         public void LoadCategoriesList()
         {
-            SPListItemCollection categories = CategoriesRepo.GetCategoriesList();
-            SPListItem allCategoriesItem = categories.Add();
-            allCategoriesItem["Title"] = "";
-            allCategoriesItem.Update();
-            View.CategoriesListSource = categories;
+            View.CategoriesListSource = CategoriesRepo.GetCategoriesList();
         }
 
         public void LoadLatestNews(string categoryName)
