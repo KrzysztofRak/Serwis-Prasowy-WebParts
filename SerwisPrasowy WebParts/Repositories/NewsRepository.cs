@@ -36,7 +36,7 @@ namespace SerwisPrasowy_WebParts.Repositories
                 query = "<Where><Contains><FieldRef Name='Category' /><Value Type='Lookup'>" + categoryName + "</Value></Contains></Where><OrderBy><FieldRef Name='Created' Ascending='False' /></OrderBy>";
             SPListItemCollection newsSPItemsColl = ExecuteQueryOnNewsList(query, 1);
 
-            if (newsSPItemsColl == null)
+            if (newsSPItemsColl == null || newsSPItemsColl.Count < 1)
                 return null;
 
             SPListItem newsSPItem = newsSPItemsColl[0];

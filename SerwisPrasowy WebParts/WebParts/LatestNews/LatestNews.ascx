@@ -32,7 +32,7 @@
     <strong>
     <asp:Label ID="LabelShowLastNewsFromCategory" runat="server" Font-Size="Medium" ForeColor="#0066FF" Text="Pokaż ostatniego newsa z kategorii: "></asp:Label>
     </strong>
-    <asp:DropDownList ID="DropDownListCategories" DataValueField="Title" DataTextField ="Title" runat="server" Height="16px" OnSelectedIndexChanged="DropDownListCategories_SelectedIndexChanged" Width="189px">
+    <asp:DropDownList ID="DropDownListCategories" AutoPostBack="true" DataValueField="Title" DataTextField ="Title" runat="server" Height="16px" OnSelectedIndexChanged="DropDownListCategories_SelectedIndexChanged" Width="189px">
     </asp:DropDownList>
 </p>
 
@@ -83,10 +83,3 @@
     </ItemTemplate>
 </asp:FormView>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<script>
-    $("#<%=SPContext.Current.Web.Url%>").change(function () {
-        alert("hahahaha");
-    });
-</script>
